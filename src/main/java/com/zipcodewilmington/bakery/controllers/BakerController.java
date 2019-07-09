@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -21,6 +18,7 @@ public class BakerController {
         this.service = service;
     }
 
+    @RequestMapping(value = "/bakers", method = RequestMethod.GET)
     public ResponseEntity<Iterable<Baker>> index() {
         return new ResponseEntity<>(service.index(), HttpStatus.OK);
     }
@@ -31,7 +29,7 @@ public class BakerController {
         return new ResponseEntity<>(service.show(id), HttpStatus.OK);
     }
 
-    @PostMapping("/bakers/")
+    @PostMapping("/bakers")
     public ResponseEntity<Baker> create(Baker baker) {
         return new ResponseEntity<>(service.create(baker), HttpStatus.CREATED);
     }
