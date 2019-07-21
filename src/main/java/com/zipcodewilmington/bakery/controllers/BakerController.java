@@ -18,13 +18,13 @@ public class BakerController {
         this.service = service;
     }
 
-    @RequestMapping(value = "/bakers", method = RequestMethod.GET)
+    @GetMapping("/bakers")
     public ResponseEntity<Iterable<Baker>> index() {
         return new ResponseEntity<>(service.index(), HttpStatus.OK);
     }
 
 
-    @GetMapping("/bakers{id}")
+    @GetMapping("/bakers/{id}")
     public ResponseEntity<Baker> show(Long id) {
         return new ResponseEntity<>(service.show(id), HttpStatus.OK);
     }
